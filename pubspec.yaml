@@ -30,9 +30,11 @@ environment:
 dependencies:
   battery_info: ^1.1.1
   camera: ^0.10.5+2
+  cloud_firestore: ^4.8.1
   connectivity_plus: ^4.0.1
   cupertino_icons: ^1.0.2
   firebase_core: ^2.14.0
+  firebase_storage: ^11.2.3
   flutter:
     sdk: flutter
   geolocator: ^9.0.2

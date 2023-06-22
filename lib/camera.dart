@@ -1,7 +1,8 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:secqur/homePage.dart';
+import 'package:provider/provider.dart';
+
+import 'Provider.dart';
 
 class CameraPage extends StatefulWidget {
   const CameraPage({Key? key}) : super(key: key);
@@ -11,66 +12,17 @@ class CameraPage extends StatefulWidget {
 }
 
 class _CameraPageState extends State<CameraPage> {
-  bool _isLoading = true;
-  CameraController? _cameraController;
   @override
   void initState() {
     super.initState();
-    initializeCamera();
-  }
-
-  CameraController? _controller;
-  XFile? _imageFile;
-
-  CameraController? get controller => _controller;
-  XFile? get imageFile => _imageFile;
-
-  Future<void> initializeCamera() async {
-    final cameras = await availableCameras();
-    if (cameras.isNotEmpty) {
-      _controller = CameraController(cameras[0], ResolutionPreset.medium);
-      await _controller!.initialize();
-      setState(() {
-        _isLoading = false;
-      });
-    }
-  }
-
-  int pictureCount = 0;
-  
-
-  Future<void> takePicture() async {
-    if (_controller!.value.isInitialized) {
-      try {
-        final image = await _controller!.takePicture();
-        _imageFile = XFile(image.path);
-
-        setState(() {
-          pictureCount++;
-        });
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (_) => MyHomePage(),
-            settings: RouteSettings(
-                arguments: {'image': _imageFile, 'pictureCount': pictureCount}),
-          ),
-        );
-      } catch (e) {
-        print('Error capturing image: $e');
-      }
-    }
-  }
-
-  @override
-  void dispose() {
-    _cameraController?.dispose();
-    super.dispose();
+    Provider.of<CameraProvider>(context, listen: false).initializeCamera();
   }
 
   @override
   Widget build(BuildContext context) {
-    if (_isLoading) {
+    final cameraProvider = Provider.of<CameraProvider>(context);
+
+    if (cameraProvider.isLoading == true) {
       return Container(
         color: Colors.white,
         child: const Center(
@@ -82,7 +34,7 @@ class _CameraPageState extends State<CameraPage> {
         child: Stack(
           alignment: Alignment.bottomCenter,
           children: [
-            CameraPreview(controller!),
+            CameraPreview(cameraProvider.controller!),
             Padding(
               padding: const EdgeInsets.all(25),
               child: Row(
@@ -95,7 +47,7 @@ class _CameraPageState extends State<CameraPage> {
                         backgroundColor: Colors.white,
                         child: Icon(Icons.circle),
                         onPressed: () {
-                          takePicture();
+                          cameraProvider.takePicture(context);
                         }),
                   ),
                 ],

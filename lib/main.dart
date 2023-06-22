@@ -1,7 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:secqur/camera.dart';
+import 'package:secqur/firebaseProvider.dart';
 
 import 'Provider.dart';
 
@@ -17,6 +17,9 @@ Future<void> main() async {
         ChangeNotifierProvider(create: (_) => BatteryInfoProvider()),
         ChangeNotifierProvider(create: (_) => LocationInfoProvider()),
         ChangeNotifierProvider(create: (_) => InternetStatusInfo()),
+        ChangeNotifierProvider(create: (_) => CameraProvider()),
+        ChangeNotifierProvider(create: (_) => FrequencyProvider()),
+        ChangeNotifierProvider(create: (_) => DataProvider()),
       ],
       child: MyApp(),
     ),
@@ -26,7 +29,6 @@ Future<void> main() async {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -38,7 +40,7 @@ class MyApp extends StatelessWidget {
       ),
       initialRoute: 'home',
       routes: {
-        'home': (context) => MyHomePage(),
+        'home': (context) => const MyHomePage(),
       },
     );
   }

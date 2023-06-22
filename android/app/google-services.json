@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "62721090546",
+    "project_id": "secqurai",
+    "storage_bucket": "secqurai.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:62721090546:android:dba1249f3368d74af3416b",
+        "android_client_info": {
+          "package_name": "com.example.secqur"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "62721090546-pchbglrj6ou3p9ul78i23uhfkp2tcj76.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.secqur",
+            "certificate_hash": "a41f3793192b45aeb89580d6438430e6c18428bb"
+          }
+        },
+        {
+          "client_id": "62721090546-tmk3j9unnfaeffsqlhvj41aa1utdvg8o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAulo4Re0cRzlerRF7kikzTlrnw4qbBwfM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "62721090546-tmk3j9unnfaeffsqlhvj41aa1utdvg8o.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
